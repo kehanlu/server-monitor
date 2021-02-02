@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLPLab server status</title>
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .nes-progress {
+            height: 20px;
+        }
+
+        pre {
+            margin: 0;
+        }
+
+        .container {
+            margin: 30px auto;
+            max-width: 1080px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {% for server in servers %}
+
+        <h2>{{server.ip}}</h2>
+        <p>RAM: {{server.ram.info.used}}GB / {{server.ram.info.total}}GB</p>
+        <div class="nes-table-responsive">
+            <table class="nes-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Memory used</th>
+                        <th style="width: 300px;">Util gpu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gpu in server.nvidia_smi.gpu_list %}
+                    <tr>
+                        <td>{{gpu.index}}</td>
+                        <td>{{gpu.name}}</td>
+                        <td>
+                            <pre>{{"%6sMiB /%6sMiB"|format(gpu.memory_used,gpu.memory_total) }}</pre>
+                            <progress class="nes-progress is-warning" value="{{gpu.memory_used}}"
+                                max="{{gpu.memory_total}}"></progress>
+                        </td>
+                        <td>{{gpu.utilization_gpu}} % <progress class="nes-progress is-warning"
+                                value="{{gpu.utilization_gpu}}" max="100"></progress></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
