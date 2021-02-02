@@ -25,45 +25,73 @@
             margin: 30px auto;
             max-width: 1080px;
         }
+
+        .server {
+            margin-bottom: 3rem;
+        }
     </style>
 </head>
 
 <body>
+
     <div class="container">
+        <p class="nes-balloon from-left nes-pointer">
+            嘿肥宅，不想畢業了ㄏㄚˋ？
+        </p>
+        <p style="float: right;">Request time: {{now}}</p>
         {% for server in servers %}
 
-        <h2>{{server.ip}}</h2>
-        <p>RAM: {{server.ram.info.used}}GB / {{server.ram.info.total}}GB</p>
-        <div class="nes-table-responsive">
-            <table class="nes-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Memory used</th>
-                        <th style="width: 300px;">Util gpu</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for gpu in server.nvidia_smi.gpu_list %}
-                    <tr>
-                        <td>{{gpu.index}}</td>
-                        <td>{{gpu.name}}</td>
-                        <td>
-                            <pre>{{"%6sMiB /%6sMiB"|format(gpu.memory_used,gpu.memory_total) }}</pre>
-                            <progress class="nes-progress is-warning" value="{{gpu.memory_used}}"
-                                max="{{gpu.memory_total}}"></progress>
-                        </td>
-                        <td>{{gpu.utilization_gpu}} % <progress class="nes-progress is-warning"
-                                value="{{gpu.utilization_gpu}}" max="100"></progress></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="server">
+            <p class="nes-badge" style="width: 100%;">
+                <span class="is-dark">{{server.ip}} </span>
+            </p>
 
+            {% if server.active %}
+            <p>RAM: {{server.ram.info.used}}GB / {{server.ram.info.total}}GB</p>
+            <div class="nes-table-responsive">
+                <table class="nes-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Memory used</th>
+                            <th style="width: 300px;">Util gpu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for gpu in server.nvidia_smi.gpu_list %}
+                        <tr>
+                            <td>{{gpu.index}}</td>
+                            <td>{{gpu.name}}</td>
+                            <td>
+                                <pre>{{"%6sMiB /%6sMiB"|format(gpu.memory_used,gpu.memory_total) }}</pre>
+                                <progress class="nes-progress is-success" value="{{gpu.memory_used}}"
+                                    max="{{gpu.memory_total}}"></progress>
+                            </td>
+                            <td>{{gpu.utilization_gpu}} % <progress class="nes-progress is-success"
+                                    value="{{gpu.utilization_gpu}}" max="100"></progress></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+            </div>
+            {% for process in server.nvidia_smi.processes%}
+            <pre>{{ "%-20s %-30.30s %-10s" | format(process.gpu_name, process.process_name,
+                            process.memory_used)}}</pre>
             {% endfor %}
+            {% else %}
+            service down!
+            <!-- 502 or error -->
+            {% endif %}
         </div>
+        {% endfor %}
+        <!-- server end -->
+
+        <a href="https://github.com/kehanlu/server-monitor"><i class="nes-octocat animate"></i></a>
     </div>
+
+
 </body>
 
 </html>
