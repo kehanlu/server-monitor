@@ -5,10 +5,10 @@ class GPU():
     def __init__(self, index, name, memory_total, memory_free, memory_used, utilization_gpu):
         self.index = index
         self.name = name
-        self.memory_total = memory_total
-        self.memory_free = memory_free
-        self.memory_used = memory_used
-        self.utilization_gpu = utilization_gpu
+        self.memory_total = int(memory_total.split()[0])
+        self.memory_free = int(memory_free.split()[0])
+        self.memory_used = int(memory_used.split()[0])
+        self.utilization_gpu = int(utilization_gpu.split()[0])
     def __repr__(self):
         return f"GPU {self.index}: {self.name:20.20},{self.memory_used:>10}/{self.memory_total:<10},{self.utilization_gpu}"
 
@@ -69,9 +69,9 @@ class RAM():
     def __init__(self):
         info = os.popen("free -g").read().split('\n')[1].split()
         self.info = {
-            'total': info[1],
-            'used': info[2],
-            'available': info[6]
+            'total': int(info[1]),
+            'used': int(info[2]),
+            'available': int(info[6])
         }
 
     def to_json(self):
