@@ -2,6 +2,10 @@ To monitor RAM and GPU usage on multiple servers.
 
 In a computer science lab or company, you usually have multiple servers running many deep learning experiments. You want to know which device is working and which is available at a glance with a minimum setup.
 
+## Screenshots
+
+![](screenshots/2021-02-04-04-07-46.png)
+
 ## Installation
 
 ```shell
@@ -11,6 +15,7 @@ pip install -r requirements.txt
 ```
 
 - `nvidia-smi`: https://www.nvidia.com
+
 
 ## Usage
 
@@ -61,17 +66,13 @@ flask run --host 0.0.0.0 --port 8787
 
 4. Visit `127.0.0.1:8787` or `<your_ip>:8787` to see the website.
 
-## Screenshots
-
-![](screenshots/2021-02-04-04-07-46.png)
-
 ## Contribution
 
 Pull requests are welcome. This is still an early project (and just for fun).
 
 TODOs:
 
-- Fast install script.
+- Fast installation script.
 - Handle error.
 - Use Nginx to serve the sites.
 - Use CI/CD to automatically update projects on servers.
