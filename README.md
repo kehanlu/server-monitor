@@ -2,6 +2,7 @@
 
 ```shell
 git clone https://github.com/kehanlu/server-monitor
+cd server-monitor
 pip install -r requirements.txt
 ```
 
@@ -53,7 +54,7 @@ flask run --host 0.0.0.0 --port 8787
 
 ## Screenshots
 
-![screenshots/2021-02-04-04-07-46.png]
+![](screenshots/2021-02-04-04-07-46.png)
 
 ## Contribution
 
@@ -61,5 +62,6 @@ Pull requests are welcome. This is still an early project (and just for fun).
 
 TODOs:
 
-- [] Use Nginx to serve the sites.
-- [] Use CI/CD to automatically update projects on servers.
+[x] Handle error.
+[x] Use Nginx to serve the sites.
+[x] Use CI/CD to automatically update projects on servers.
