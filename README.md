@@ -1,10 +1,10 @@
 To monitor RAM and GPU usage on multiple servers. 
 
-In a computer science lab or company, you usually have multiple servers running many deep learning experiments. You want to know which device is working and which is available at a glance with a minimum setup.
+In a computer science lab or company, you usually have multiple servers and GPUs running many deep learning experiments. You want to know which device is working and which is available at a glance with a minimum setup.
 
 ## Screenshots
 
-![](screenshots/2021-02-04-04-07-46.png)
+![](images/2021-02-04-04-07-46.png)
 
 ## Installation
 
@@ -18,6 +18,8 @@ pip install -r requirements.txt
 
 
 ## Usage
+
+![](images/2021-02-04-04-53-08.png)
 
 ### Server
 
@@ -34,7 +36,7 @@ uvicorn server:app --host 0.0.0.0 --port 23333
 
 ### Master
 
-"Master" means the web server which is going to fetch data from each servers. You can run this web server on any computer. In some case, you might want this web server are accessible from public network, but still put servers behind a firewall.
+"Master" means the web server which is going to fetch data from each servers. You can run this web server on any computer. In some case, you might want this web server to be accessible from public network, but still hide servers behind a firewall.
 
 1. create a file named `config.py`
 
