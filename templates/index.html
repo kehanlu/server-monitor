@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NLPLab server status</title>
+    <title>{{title}}</title>
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -36,7 +36,7 @@
 
     <div class="container">
         <p class="nes-balloon from-left nes-pointer">
-            嘿肥宅，不想畢業了ㄏㄚˋ？
+            {{top_message}}
         </p>
         <p style="float: right;">Request time: {{now}}</p>
         {% for server in servers %}

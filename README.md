@@ -1,3 +1,5 @@
+To watch RAM and GPU usage on each server. 
+
 ## Installation
 
 ```shell
@@ -35,12 +37,21 @@ This is still an early project, the best way is you serve this application by ng
 
 2. In `config.py`, you need to have a list of server ips. Then the web server will iterate from the list and GET the API at `http://{ip}:23333`.
 
+- `server_ips`
+- `site_title(optional)`: the title of website
+- `top_message(optional)`: the message shows on the top
+
 ```python
-server_ips = [
-    "192.168.0.1",
-    "192.168.0.3",
-    "192.168.0.4"
-]
+CONFIG = {
+    "site_title": "Server status",
+    "top_message": "Hello world",
+    "server_ips": [
+        "192.168.0.2",
+        "192.168.0.3",
+        "192.168.0.4",
+    ],
+}
+
 ```
 
 3. run the command to start the server.
