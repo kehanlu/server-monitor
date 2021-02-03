@@ -1,4 +1,6 @@
-To watch RAM and GPU usage on each server. 
+To monitor RAM and GPU usage on multiple servers. 
+
+In a computer science lab or company, you usually have multiple servers running many deep learning experiments. You want to know which device is working and which is available at a glance with a minimum setup.
 
 ## Installation
 
@@ -14,7 +16,7 @@ pip install -r requirements.txt
 
 ### Server
 
-"Server" means the servers you want to monitor.
+"Server" means the server you want to monitor.
 
 1. Go to server you want to monitor
     - You have to be sure that `nvidia-smi` command is installed.
@@ -24,10 +26,6 @@ pip install -r requirements.txt
 ```shell
 uvicorn server:app --host 0.0.0.0 --port 23333
 ```
-
-Note:
-This is still an early project, the best way is you serve this application by nginx or other services.
-
 
 ### Master
 
@@ -73,6 +71,7 @@ Pull requests are welcome. This is still an early project (and just for fun).
 
 TODOs:
 
-[x] Handle error.
-[x] Use Nginx to serve the sites.
-[x] Use CI/CD to automatically update projects on servers.
+- Fast install script.
+- Handle error.
+- Use Nginx to serve the sites.
+- Use CI/CD to automatically update projects on servers.
