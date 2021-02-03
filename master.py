@@ -4,18 +4,12 @@ import requests
 import json
 from datetime import datetime
 import pytz
+from config import server_ips
 
 tz = pytz.timezone("Asia/Taipei")
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-
-server_ips = [
-    "140.118.127.79",
-    "140.118.127.81",
-    "140.118.127.87",
-    "140.118.127.90",
-]
 
 
 @app.route('/')
