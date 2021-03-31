@@ -31,7 +31,7 @@ pip install -r requirements.txt
 2. run the command to start an API.
 
 ```shell
-gunicorn -w 1 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:23333 server:app
+gunicorn -w 1 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:23333 server:app --daemon
 ```
 
 ### Master
