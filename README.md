@@ -31,7 +31,7 @@ pip install -r requirements.txt
 2. run the command to start an API.
 
 ```shell
-uvicorn server:app --host 0.0.0.0 --port 23333
+gunicorn -w 1 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:23333 server:app
 ```
 
 ### Master
@@ -62,8 +62,7 @@ CONFIG = {
 3. run the command to start the server.
 
 ```shell
-export FLASK_APP=master.py
-flask run --host 0.0.0.0 --port 8787
+gunicorn -w 1 -b 0.0.0.0:8787 master:app
 ```
 
 4. Visit `127.0.0.1:8787` or `<your_ip>:8787` to see the website.
